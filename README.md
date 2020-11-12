@@ -1,1 +1,1 @@
-# Mexico-Lindo-Contigo-API-
+# Mexico-Lindo-Contigo-API
