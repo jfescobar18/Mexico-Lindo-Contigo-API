@@ -9,7 +9,7 @@ exports.ensureAuthenticated = function (req, res, next) {
         return ApiResponse.send(HttpCodes.FORBIDDEN, res, ResponseCodes.AuthHeaderMissed, null);
     }
 
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization.split(" ")[0];
     const payload = jwt.decode(token, process.env.TOKEN);
 
     if (payload.exp <= moment().unix()) {

@@ -72,6 +72,21 @@ CREATE TABLE IF NOT EXISTS `MainHasMembers` (
     FOREIGN KEY ( `MemberUserId` ) REFERENCES `Users`( `UserId` )
 );
 
+CREATE TABLE IF NOT EXISTS `Admins` (
+    `AdminId` INT NOT NULL AUTO_INCREMENT,
+    `AdminUsername` VARCHAR(255) NOT NULL,
+    `AdminPassword` VARCHAR(255) NOT NULL,
+    `CreationDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`AdminId`)
+);
+
+-- Se@d0gs4rena --
+INSERT INTO `Admins` (`AdminId`, `AdminUsername`, `AdminPassword`)
+SELECT NULL, "soundmaker", "$2b$10$pEbe5m2e6i2LqvmbLs7H7.wlgN84l5LmIWBbVbG1kXfRTIVFopqnC" FROM DUAL
+WHERE NOT EXISTS (SELECT `AdminUsername`
+                    FROM `Admins`
+                    WHERE `AdminUsername` = "soundmaker" LIMIT 1);
+
 CREATE TABLE IF NOT EXISTS `Sellers` (
     `SellerId` INT NOT NULL AUTO_INCREMENT,
     `SellerFirstName` VARCHAR(255) NOT NULL,

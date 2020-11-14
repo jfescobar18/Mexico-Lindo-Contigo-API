@@ -1,8 +1,9 @@
 const db = require("../Sequelize/database");
+const Cryptography = require("../Utils/Cryptography");
 
 exports.getSellerByUsername = async function (SellerUsername) {
     try {
-        const seller = await db.sellers.findAll({
+        const seller = await db.Sellers.findAll({
             where: {
                 SellerUsername: {
                     [db.Op.eq]: SellerUsername
