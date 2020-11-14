@@ -33,7 +33,7 @@ db.Sequelize = Sequelize;
 db.instance = instance;
 db.Op = Op;
 
-// db.Table = require("./DataModels/Table.Model")(instance, Sequelize);
+db.Sellers = require("./DataModels/sellers")(instance, Sequelize.DataTypes);
 
 db.instance.sync({ force: false })
     .then(() => {
