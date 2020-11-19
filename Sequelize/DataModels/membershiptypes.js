@@ -8,8 +8,16 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    MemberShipTypeName: {
+    MembershipTypeName: {
       type: DataTypes.STRING(125),
+      allowNull: false
+    },
+    MembershipFamilyMembersMin: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    MembershipFamilyMembersMax: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     MembershipTypeMonthlyCost: {

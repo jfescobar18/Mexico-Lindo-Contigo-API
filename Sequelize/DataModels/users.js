@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     UserCURP: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
     },
     UserFirstName: {
       type: DataTypes.STRING(255),

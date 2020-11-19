@@ -4,4 +4,5 @@ node_modules/
 #Files
 .env
 .vs
+.vscode
 .git

@@ -25,7 +25,7 @@ exports.sellerSingUp = async function (req, res) {
     let seller = await SellerActions.getSellerByUsername(req.body.SellerUsername).catch(error => { throw error });
 
     if (seller === null) {
-        seller = await SellerActions.addSeller(req.body, res).catch(error => { throw error });
+        seller = await SellerActions.addSeller(req.body).catch(error => { throw error });
         return ApiResponse.send(HttpCodes.OK, res, ResponseCodes.SellerInserted, null);
     }
     else {

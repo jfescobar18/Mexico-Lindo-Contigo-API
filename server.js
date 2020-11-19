@@ -46,6 +46,9 @@ app.get("/", function (req, res) {
 const AuthenticationController = require("./Controllers/AuthenticationController")();
 app.use("/auth", AuthenticationController);
 
+const MembershipController = require("./Controllers/MembershipController")();
+app.use("/membership", MembershipController);
+
 try {
     if (cluster.isMaster) {
         console.log("Master " + process.pid + " is running");

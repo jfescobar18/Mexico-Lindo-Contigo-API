@@ -12,17 +12,39 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    MembershipStatusId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: {
+          tableName: 'membershipstatus',
+        },
+        key: 'MembershipStatusId'
+      }
+    },
     MembershipUniqueCode: {
       type: DataTypes.STRING(125),
-      allowNull: false
+      allowNull: true
     },
     MembershipTypeId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: {
+          tableName: 'membershiptypes',
+        },
+        key: 'MembershipTypeId'
+      }
     },
     MembershipPaymentTypeId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: {
+          tableName: 'membershippaymenttypes',
+        },
+        key: 'MembershipPaymentTypeId'
+      }
     },
     MembershipPaymentFrequency: {
       type: DataTypes.INTEGER,
@@ -35,7 +57,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     MembershipPaymentStatusId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: {
+          tableName: 'membershippaymentstatus',
+        },
+        key: 'MembershipPaymentStatusId'
+      }
     },
     MembershipNextPaymentDate: {
       type: DataTypes.DATE,
