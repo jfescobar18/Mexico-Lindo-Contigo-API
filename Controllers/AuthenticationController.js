@@ -12,6 +12,12 @@ var routes = function () {
 
     router.route("/seller-login")
         .post(Auth.sellerLogin);
+
+    router.route("/main-login")
+        .post(Auth.userLogin);
+
+    router.route("/is-token-active")
+        .get(AuthMiddleware.ensureAuthenticated, Auth.isTokenActive);
     return router;
 };
 

@@ -37,7 +37,7 @@ exports.sellerLogin = async function (req, res) {
     try {
         let seller = await SellerActions.getSellerByUsername(req.body.SellerUsername).catch(error => { throw error });
 
-        if (seller !== null && await Cryptography.comparePassword(req.body.SellerPassword, seller.SellerPassword)) {
+        if (seller !== null && await Cryptography.comparePassword(req.body.SellerPassword, seller.SellerPassword) && seller.UserTypeId === 1) {
             return ApiResponse.send(HttpCodes.OK, res, ResponseCodes.AuthenticatedSeller, TokenService.createToken(seller, 365));
         }
         else {
@@ -46,4 +46,23 @@ exports.sellerLogin = async function (req, res) {
     } catch (error) {
         return ApiResponse.send(HttpCodes.BAD_REQUEST, res, error.message, null);
     }
+}
+
+exports.userLogin = async function (req, res) {
+    try {
+        let user = await SellerActions.getUserByEmail(req.body.UserEmail).catch(error => { throw error });
+
+        if (user !== null && await Cryptography.comparePassword(req.body.UserPassword, main.UserPassword)) {
+            return ApiResponse.send(HttpCodes.OK, res, ResponseCodes.AuthenticatedUser, TokenService.createToken(user, 365));
+        }
+        else {
+            return ApiResponse.send(HttpCodes.UNAUTHORIZED, res, ResponseCodes.InvalidCredentials, null);
+        }
+    } catch (error) {
+        return ApiResponse.send(HttpCodes.BAD_REQUEST, res, error.message, null);
+    }
+}
+
+exports.isTokenActive = async function (req, res) {
+    return ApiResponse.send(HttpCodes.OK, res, ResponseCodes.Hello, null);
 }

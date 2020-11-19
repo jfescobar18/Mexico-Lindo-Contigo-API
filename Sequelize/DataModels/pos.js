@@ -1,19 +1,23 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('membershippaymenttypes', {
-    MembershipPaymentTypeId: {
+  return sequelize.define('pos', {
+    POSId: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    MembershipPaymentTypeName: {
+    POSName: {
       type: DataTypes.STRING(125),
+      allowNull: false
+    },
+    POSAddress: {
+      type: DataTypes.STRING(255),
       allowNull: false
     }
   }, {
     sequelize,
-    tableName: 'membershippaymenttypes'
+    tableName: 'pos'
   });
 };

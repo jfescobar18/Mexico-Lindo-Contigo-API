@@ -98,6 +98,13 @@ CREATE TABLE IF NOT EXISTS `Sellers` (
     PRIMARY KEY (`SellerId`)
 );
 
+-- Se@d0gs4rena --
+INSERT INTO `Sellers` (`SellerId`, `SellerFirstName`, `SellerLastName`, `SellerUsername`, `SellerPassword`)
+SELECT NULL, "Seller", "Smith","flamehart", "$2b$10$pEbe5m2e6i2LqvmbLs7H7.wlgN84l5LmIWBbVbG1kXfRTIVFopqnC" FROM DUAL
+WHERE NOT EXISTS (SELECT `SellerUsername`
+                    FROM `Sellers`
+                    WHERE `SellerUsername` = "flamehart" LIMIT 1);
+
 CREATE TABLE IF NOT EXISTS `MembershipTypes` (
     `MembershipTypeId` INT NOT NULL AUTO_INCREMENT,
     `MemberShipTypeName` VARCHAR (125) NOT NULL,
@@ -174,6 +181,19 @@ WHERE NOT EXISTS (SELECT `MembershipPaymentStatusName`
                     FROM `MembershipPaymentStatus`
                     WHERE `MembershipPaymentStatusName` = "DECLINED" LIMIT 1);                  
 
+CREATE TABLE IF NOT EXISTS `POS` (
+    `POSId` INT NOT NULL AUTO_INCREMENT,
+    `POSName` VARCHAR (125) NOT NULL,
+    `POSAddress` VARCHAR (255) NOT NULL,
+    PRIMARY KEY (`POSId`)
+);
+
+INSERT INTO `POS` (`POSId`, `POSName`, `POSAddress`)
+SELECT NULL, "Default", "Default" FROM DUAL
+WHERE NOT EXISTS (SELECT `POSName`
+                    FROM `POS`
+                    WHERE `POSName` = "Default" LIMIT 1);   
+
 CREATE TABLE IF NOT EXISTS `Memberships`(
     `MembershipId` INT NOT NULL AUTO_INCREMENT,
     `UserId` INT NOT NULL,
@@ -187,4 +207,15 @@ CREATE TABLE IF NOT EXISTS `Memberships`(
     `MembershipLastPaymentDate` DATETIME NULL,
     `LastModified` DATETIME NULL,
     PRIMARY KEY (`MembershipId`)
+);
+
+CREATE TABLE IF NOT EXISTS `Sells` (
+    `SellId` INT NOT NULL AUTO_INCREMENT,
+    `SellerId` INT NOT NULL,
+    `MembershipId` INT NOT NULL,
+    `POSId` INT NOT NULL,
+    `CreationDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`SellId`),
+    FOREIGN KEY (`SellerId`) REFERENCES `Sellers`(`SellerId`),
+    FOREIGN KEY (`MembershipId`) REFERENCES `Memberships`(`MembershipId`)
 );

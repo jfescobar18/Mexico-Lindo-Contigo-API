@@ -1,0 +1,40 @@
+version: '3.2'
+
+services:
+  node:
+    build: ./
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - docker_xxx
+    environment:
+      #General
+      - NODE_ENV=development
+      - PORT=3000
+      - TOKEN=pwonTvTjYv9RjzujOZ8OE1erQPLZSjfM
+      - WEB_APP_URL_PRODUCTION=https://wrong-powder.com/
+      - WEB_APP_URL_DEVELOP=http://localhost:3000/
+      #DB Config
+      - HOST=localhost
+      - USER=root
+      - PASSWORD=password
+      - DB=MLC_Db
+      #SMPT Config
+      - HOST_SMTP=smtp.gmail.com
+      - USER_SMTP=fraescruz@gmail.com
+     -  PASSWORD_SMTP=password
+  db:
+    build: ./Sequelize/MySQL
+    networks:
+      - docker_xxx
+    environment:
+      - HOST=localhost
+      - USER=root
+      - PASSWORD=password
+      - DB=MLC_Db
+
+networks:
+  docker_xxx:
+    driver: bridge
