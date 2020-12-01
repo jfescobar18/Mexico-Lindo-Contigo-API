@@ -3,38 +3,48 @@ version: '3.2'
 services:
   node:
     build: ./
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
     networks:
-      - docker_xxx
+      - Mexico_Lindo_Contigo
     environment:
       #General
-      - NODE_ENV=development
-      - PORT=3000
       - TOKEN=pwonTvTjYv9RjzujOZ8OE1erQPLZSjfM
       - WEB_APP_URL_PRODUCTION=https://wrong-powder.com/
       - WEB_APP_URL_DEVELOP=http://localhost:3000/
       #DB Config
-      - HOST=localhost
-      - USER=root
-      - PASSWORD=password
-      - DB=MLC_Db
-      #SMPT Config
-      - HOST_SMTP=smtp.gmail.com
-      - USER_SMTP=fraescruz@gmail.com
-     -  PASSWORD_SMTP=password
-  db:
-    build: ./Sequelize/MySQL
+      - HOST=mlc-mysql-api
+      - MYSQL_USER=graymarrow
+      - MYSQL_PASS=Sh0r3sofPl3nty
+      - MYSQL_DB=MLC_Db
+    volumes: 
+      - .:/usr/src/
+      - /usr/src/node_modules/
+    container_name: mlc-nodejs-api
+  mysql:
+    image: mysql:8.0.21
     networks:
-      - docker_xxx
+      - Mexico_Lindo_Contigo
     environment:
-      - HOST=localhost
-      - USER=root
-      - PASSWORD=password
-      - DB=MLC_Db
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=graymarrow
+      - MYSQL_PASSWORD=Sh0r3sofPl3nty
+      - MYSQL_DATABASE=MLC_Db
+    container_name: mlc-mysql-api
+    ports: 
+      - 3001:3306
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.9.6
+    depends_on:
+      - mysql
+    networks:
+      - Mexico_Lindo_Contigo
+    ports:
+      - "3002:80"
+    environment:
+      - PMA_HOST=mlc-mysql-api
+      - PMA_PORT=3306
+    volumes:
+      - /sessions
+    container_name: mlc-phpmyadmin-api
 
 networks:
-  docker_xxx:
-    driver: bridge
+  Mexico_Lindo_Contigo:

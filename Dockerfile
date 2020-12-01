@@ -1,14 +1,14 @@
 FROM node:13.12.0
 
-RUN mkdir -p /usr/src/mexico-lindo-contigo-api
+RUN mkdir -p /usr/src/
 
-WORKDIR /usr/src/mexico-lindo-contigo-api
+WORKDIR /usr/src/
 
-COPY ["package.json",  "/usr/src/mexico-lindo-contigo-api/"]
+COPY ["package.json", "package-lock.json", "/usr/src/"]
 
-RUN npm install --production
+RUN npm install
 
-COPY [".",  "/usr/src/mexico-lindo-contigo-api/"]
+COPY [".",  "/usr/src/"]
 
 EXPOSE 3000
 

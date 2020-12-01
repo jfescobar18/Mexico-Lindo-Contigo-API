@@ -1,8 +1,9 @@
 #Directories
 node_modules/
-
-#Files
-.env
 .vs
 .vscode
 .git
+
+#Files
+.env
+docker-compose.override.yml

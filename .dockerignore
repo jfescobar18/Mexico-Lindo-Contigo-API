@@ -1,5 +1,5 @@
 *.log
-.dockerignore
+.docker-compose.override.yml
 .git
 .gitignore
 build/*
