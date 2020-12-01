@@ -13,11 +13,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     MembershipFamilyMembersMin: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
       allowNull: false
     },
     MembershipFamilyMembersMax: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
       allowNull: false
     },
     MembershipTypeMonthlyCost: {
@@ -34,6 +34,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     MembershipAdministrativeCost: {
       type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    MembershipMathExpression: {
+      type: DataTypes.STRING(125),
       allowNull: false
     }
   }, {

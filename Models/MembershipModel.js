@@ -20,9 +20,10 @@ exports.getMembershipType = async function (req, res) {
 exports.addFamily = async function (req, res) {
     try {
         let users = [];
-        req.body.Family.forEach(userParams => {
-            users.push(await MembershipActions.addUser(userParams).catch(error => { throw error }));
-        });
+        for (const userParams of req.body.Family) {
+            let user = await MembershipActions.addUser(userParams).catch(error => { throw error });
+            users.push(user);
+        }
         return ApiResponse.send(HttpCodes.OK, res, users[0], null);
     } catch (error) {
         return ApiResponse.send(HttpCodes.BAD_REQUEST, res, error.message, null);

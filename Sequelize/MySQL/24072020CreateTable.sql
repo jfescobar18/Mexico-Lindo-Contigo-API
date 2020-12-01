@@ -61,15 +61,31 @@ CREATE TABLE IF NOT EXISTS `Users`(
     `CreationDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
     `LastModified` DATETIME NULL,
     PRIMARY KEY ( `UserId` ),
-    FOREIGN KEY ( `UserGenderId` ) REFERENCES `UserGenders`( `UserGenderId` ),
-    FOREIGN KEY ( `UserTypeId` ) REFERENCES `UserTypes`( `UserTypeId` )
+    CONSTRAINT `UserGenderId_FK`
+        FOREIGN KEY ( `UserGenderId` ) 
+        REFERENCES `UserGenders`( `UserGenderId` )
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+    CONSTRAINT `UserTypeId_FK`
+        FOREIGN KEY ( `UserTypeId` ) 
+        REFERENCES `UserTypes`( `UserTypeId` )
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
 );
 
 CREATE TABLE IF NOT EXISTS `MainHasMembers` (
     `MainUserId` INT NOT NULL,
     `MemberUserId` INT NOT NULL,
-    FOREIGN KEY ( `MainUserId` ) REFERENCES `Users`( `UserId` ),
-    FOREIGN KEY ( `MemberUserId` ) REFERENCES `Users`( `UserId` )
+    CONSTRAINT `MainUserId_FK`
+        FOREIGN KEY ( `MainUserId` ) 
+        REFERENCES `Users`( `UserId` )
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+    CONSTRAINT `MemberUserId_FK`
+        FOREIGN KEY ( `MemberUserId` ) 
+        REFERENCES `Users`( `UserId` )
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
 );
 
 CREATE TABLE IF NOT EXISTS `Admins` (
@@ -105,38 +121,45 @@ WHERE NOT EXISTS (SELECT `SellerUsername`
                     FROM `Sellers`
                     WHERE `SellerUsername` = "flamehart" LIMIT 1);
 
+--T=10
+--T55=5--
+--P=1.0--
+--H=1.1--
+--Pa=3.1--
+
 CREATE TABLE IF NOT EXISTS `MembershipTypes` (
     `MembershipTypeId` INT NOT NULL AUTO_INCREMENT,
     `MembershipTypeName` VARCHAR (125) NOT NULL,
-    `MembershipFamilyMembersMin` INT NOT NULL,
-    `MembershipFamilyMembersMax` INT NOT NULL,
+    `MembershipFamilyMembersMin` DECIMAL(12, 2) NOT NULL,
+    `MembershipFamilyMembersMax` DECIMAL(12, 2) NOT NULL,
     `MembershipTypeMonthlyCost` DECIMAL(12, 2) NOT NULL,
     `MembershipTypeHalfYearlyCost` DECIMAL(12, 2) NOT NULL,
     `MembershipTypeYearlyCost` DECIMAL(12, 2) NOT NULL,
     `MembershipAdministrativeCost` DECIMAL(12, 2) NOT NULL,
+    `MembershipMathExpression` VARCHAR (125) NOT NULL,
     PRIMARY KEY (`MembershipTypeId`)
 );
 
-INSERT INTO `MembershipTypes` (`MembershipTypeId`, `MembershipTypeName`, `MembershipFamilyMembersMin`, `MembershipFamilyMembersMax`, `MembershipTypeMonthlyCost`, `MembershipTypeHalfYearlyCost`, `MembershipTypeYearlyCost`, `MembershipAdministrativeCost`)
-SELECT NULL, "I1", 1, 1, 1.00, 1.00, 1.00, 5.00 FROM DUAL
+INSERT INTO `MembershipTypes` (`MembershipTypeId`, `MembershipTypeName`, `MembershipFamilyMembersMin`, `MembershipFamilyMembersMax`, `MembershipTypeMonthlyCost`, `MembershipTypeHalfYearlyCost`, `MembershipTypeYearlyCost`, `MembershipAdministrativeCost`, `MembershipMathExpression`)
+SELECT NULL, "I1", 10.0, 10.0, 16.00, 88.00, 160.00, 5.00, "10" FROM DUAL
 WHERE NOT EXISTS (SELECT `MembershipTypeName` 
                     FROM `MembershipTypes` 
                     WHERE `MembershipTypeName` = "I1" LIMIT 1);
 
-INSERT INTO `MembershipTypes` (`MembershipTypeId`, `MembershipTypeName`, `MembershipFamilyMembersMin`, `MembershipFamilyMembersMax`, `MembershipTypeMonthlyCost`, `MembershipTypeHalfYearlyCost`, `MembershipTypeYearlyCost`, `MembershipAdministrativeCost`)
-SELECT NULL, "S2", 2, 3, 1.00, 1.00, 1.00, 5.00 FROM DUAL
+INSERT INTO `MembershipTypes` (`MembershipTypeId`, `MembershipTypeName`, `MembershipFamilyMembersMin`, `MembershipFamilyMembersMax`, `MembershipTypeMonthlyCost`, `MembershipTypeHalfYearlyCost`, `MembershipTypeYearlyCost`, `MembershipAdministrativeCost`, `MembershipMathExpression`)
+SELECT NULL, "S2", 20.0, 20.0, 30.00, 165.00, 300.00, 5.00, "20" FROM DUAL
 WHERE NOT EXISTS (SELECT `MembershipTypeName` 
                     FROM `MembershipTypes` 
                     WHERE `MembershipTypeName` = "S2" LIMIT 1);
 
-INSERT INTO `MembershipTypes` (`MembershipTypeId`, `MembershipTypeName`, `MembershipFamilyMembersMin`, `MembershipFamilyMembersMax`, `MembershipTypeMonthlyCost`, `MembershipTypeHalfYearlyCost`, `MembershipTypeYearlyCost`, `MembershipAdministrativeCost`)
-SELECT NULL, "F3", 4, 5, 1.00, 1.00, 1.00, 5.00 FROM DUAL
+INSERT INTO `MembershipTypes` (`MembershipTypeId`, `MembershipTypeName`, `MembershipFamilyMembersMin`, `MembershipFamilyMembersMax`, `MembershipTypeMonthlyCost`, `MembershipTypeHalfYearlyCost`, `MembershipTypeYearlyCost`, `MembershipAdministrativeCost`, `MembershipMathExpression`)
+SELECT NULL, "F3", 11.0, 12.1, 24.00, 132.00, 240.00, 5.00, "10 + 1 || 10 + 1.1 || 10 + 1 + 1.1" FROM DUAL
 WHERE NOT EXISTS (SELECT `MembershipTypeName` 
                     FROM `MembershipTypes` 
                     WHERE `MembershipTypeName` = "F3" LIMIT 1);
 
-INSERT INTO `MembershipTypes` (`MembershipTypeId`, `MembershipTypeName`, `MembershipFamilyMembersMin`, `MembershipFamilyMembersMax`, `MembershipTypeMonthlyCost`, `MembershipTypeHalfYearlyCost`, `MembershipTypeYearlyCost`, `MembershipAdministrativeCost`)
-SELECT NULL, "P4", 6, 99, 1.00, 1.00, 1.00, 5.00 FROM DUAL
+INSERT INTO `MembershipTypes` (`MembershipTypeId`, `MembershipTypeName`, `MembershipFamilyMembersMin`, `MembershipFamilyMembersMax`, `MembershipTypeMonthlyCost`, `MembershipTypeHalfYearlyCost`, `MembershipTypeYearlyCost`, `MembershipAdministrativeCost`, `MembershipMathExpression`)
+SELECT NULL, "P4", 13.1, 15.2, 45.00, 248.00, 450.00, 5.00, "10 + 3.1 || 10 + 3.1 + 1 || 10 + 3.1 + 1.1 || 10 + 3.1 + 1 + 1.1" FROM DUAL
 WHERE NOT EXISTS (SELECT `MembershipTypeName` 
                     FROM `MembershipTypes` 
                     WHERE `MembershipTypeName` = "P4" LIMIT 1);
@@ -234,10 +257,26 @@ CREATE TABLE IF NOT EXISTS `Memberships`(
     `MembershipLastPaymentDate` DATETIME NULL,
     `LastModified` DATETIME NULL,
     PRIMARY KEY (`MembershipId`),
-    FOREIGN KEY (`MembershipStatusId`) REFERENCES `MembershipStatus`(`MembershipStatusId`),
-    FOREIGN KEY (`MembershipTypeId`) REFERENCES `MembershipTypes`(`MembershipTypeId`),
-    FOREIGN KEY (`MembershipPaymentTypeId`) REFERENCES `MembershipPaymentTypes`(`MembershipPaymentTypeId`),
-    FOREIGN KEY (`MembershipPaymentStatusId`) REFERENCES `MembershipPaymentStatus`(`MembershipPaymentStatusId`)
+    CONSTRAINT `MembershipStatusId_FK`
+        FOREIGN KEY (`MembershipStatusId`) 
+        REFERENCES `MembershipStatus`(`MembershipStatusId`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+    CONSTRAINT `MembershipTypeId_FK`
+        FOREIGN KEY (`MembershipTypeId`) 
+        REFERENCES `MembershipTypes`(`MembershipTypeId`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+    CONSTRAINT `MembershipPaymentTypeId_FK`
+        FOREIGN KEY (`MembershipPaymentTypeId`) 
+        REFERENCES `MembershipPaymentTypes`(`MembershipPaymentTypeId`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+    CONSTRAINT `MembershipPaymentStatusId_FK`
+        FOREIGN KEY (`MembershipPaymentStatusId`) 
+        REFERENCES `MembershipPaymentStatus`(`MembershipPaymentStatusId`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
 );
 
 CREATE TABLE IF NOT EXISTS `Sells` (
@@ -247,6 +286,14 @@ CREATE TABLE IF NOT EXISTS `Sells` (
     `POSId` INT NOT NULL,
     `CreationDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`SellId`),
-    FOREIGN KEY (`SellerId`) REFERENCES `Sellers`(`SellerId`),
-    FOREIGN KEY (`MembershipId`) REFERENCES `Memberships`(`MembershipId`)
+    CONSTRAINT `SellerId_FK`
+        FOREIGN KEY (`SellerId`) 
+        REFERENCES `Sellers`(`SellerId`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+    CONSTRAINT `MembershipId_FK`
+        FOREIGN KEY (`MembershipId`) 
+        REFERENCES `Memberships`(`MembershipId`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
 );
