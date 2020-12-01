@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('users', {
+  return sequelize.define('Users', {
     UserId: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -33,7 +33,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: {
-          tableName: 'usergenders',
+          tableName: 'UserGenders',
         },
         key: 'UserGenderId'
       }
@@ -43,7 +43,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: {
-          tableName: 'usertypes',
+          tableName: 'UserTypes',
         },
         key: 'UserTypeId'
       }
@@ -84,6 +84,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'users'
+    tableName: 'Users'
   });
 };

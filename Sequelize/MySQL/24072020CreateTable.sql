@@ -122,7 +122,7 @@ WHERE NOT EXISTS (SELECT `SellerUsername`
                     WHERE `SellerUsername` = "flamehart" LIMIT 1);
 
 -- T=10 --
--- T55=5 --
+-- T55=20 --
 -- P=1.0 --
 -- H=1.1 --
 -- Pa=3.1 --

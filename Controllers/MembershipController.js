@@ -4,8 +4,8 @@ const AuthMiddleware = require("../Utils/AuthMiddleware");
 const Membership = require("../Models/MembershipModel");
 
 var routes = function () {
-    router.route("/get-membership-type/:MembershipFamilyMembers")
-        .get(Membership.getMembershipType);
+    router.route("/get-membership-type")
+        .post(Membership.getMembershipType);
 
     router.route("/add-family")
         .post(Membership.addFamily);

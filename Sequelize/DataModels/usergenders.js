@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('usergenders', {
+  return sequelize.define('UserGenders', {
     UserGenderId: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -14,6 +14,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'usergenders'
+    tableName: 'UserGenders'
   });
 };

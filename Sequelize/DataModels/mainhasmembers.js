@@ -1,13 +1,13 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('mainhasmembers', {
+  return sequelize.define('MainHasMembers', {
     MainUserId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: {
-          tableName: 'users',
+          tableName: 'Users',
         },
         key: 'UserId'
       }
@@ -17,13 +17,13 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: {
-          tableName: 'users',
+          tableName: 'Users',
         },
         key: 'UserId'
       }
     }
   }, {
     sequelize,
-    tableName: 'mainhasmembers'
+    tableName: 'MainHasMembers'
   });
 };

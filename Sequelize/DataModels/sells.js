@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('sells', {
+  return sequelize.define('Sells', {
     SellId: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: {
-          tableName: 'sellers',
+          tableName: 'Sellers',
         },
         key: 'SellerId'
       }
@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: {
-          tableName: 'memberships',
+          tableName: 'Memberships',
         },
         key: 'MembershipId'
       }
@@ -39,6 +39,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'sells'
+    tableName: 'Sells'
   });
 };

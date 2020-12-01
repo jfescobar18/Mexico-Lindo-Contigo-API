@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('pos', {
+  return sequelize.define('POS', {
     POSId: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -18,6 +18,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'pos'
+    tableName: 'POS'
   });
 };

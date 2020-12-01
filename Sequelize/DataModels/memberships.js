@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('memberships', {
+  return sequelize.define('Memberships', {
     MembershipId: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: {
-          tableName: 'membershipstatus',
+          tableName: 'MembershipStatus',
         },
         key: 'MembershipStatusId'
       }
@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: {
-          tableName: 'membershiptypes',
+          tableName: 'MembershipTypes',
         },
         key: 'MembershipTypeId'
       }
@@ -41,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: {
-          tableName: 'membershippaymenttypes',
+          tableName: 'MembershipPaymentTypes',
         },
         key: 'MembershipPaymentTypeId'
       }
@@ -60,7 +60,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: {
-          tableName: 'membershippaymentstatus',
+          tableName: 'MembershipPaymentStatus',
         },
         key: 'MembershipPaymentStatusId'
       }
@@ -79,6 +79,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'memberships'
+    tableName: 'Memberships'
   });
 };

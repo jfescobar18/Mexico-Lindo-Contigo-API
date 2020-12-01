@@ -5,7 +5,32 @@ const MembershipActions = require("../DatabaseActions/MembershipActions");
 
 exports.getMembershipType = async function (req, res) {
     try {
-        let membershipType = await MembershipActions.getMembershipByMembershipFamilyMembers(req.params.MembershipFamilyMembers).catch(error => { throw error });
+        let MembersMathResult = 0.0;
+        for (const memberCode of req.body.MembersArray) {
+            switch (memberCode.toLowerCase()) {
+                case "t":
+                    MembersMathResult += 10.0;
+                    break;
+                case "t55":
+                    MembersMathResult += 20.0;
+                    break;
+                case "p":
+                    MembersMathResult += 1.0;
+                    break;
+                case "h":
+                    MembersMathResult += 1.1;
+                    break;
+                case "pa":
+                    MembersMathResult += 3.1;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        console.log(MembersMathResult);
+
+        let membershipType = await MembershipActions.getMembershipByMembershipFamilyMembers(MembersMathResult).catch(error => { throw error });
         if (membershipType !== null) {
             return ApiResponse.send(HttpCodes.OK, res, membershipType, null);
         }
