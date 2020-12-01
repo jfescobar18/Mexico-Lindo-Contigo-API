@@ -121,11 +121,11 @@ WHERE NOT EXISTS (SELECT `SellerUsername`
                     FROM `Sellers`
                     WHERE `SellerUsername` = "flamehart" LIMIT 1);
 
---T=10
---T55=5--
---P=1.0--
---H=1.1--
---Pa=3.1--
+-- T=10 --
+-- T55=5 --
+-- P=1.0 --
+-- H=1.1 --
+-- Pa=3.1 --
 
 CREATE TABLE IF NOT EXISTS `MembershipTypes` (
     `MembershipTypeId` INT NOT NULL AUTO_INCREMENT,
