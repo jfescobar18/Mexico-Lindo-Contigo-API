@@ -24,6 +24,7 @@ exports.getMembershipType = async function (req, res) {
                     MembersMathResult += 3.1;
                     break;
                 default:
+                    MembersMathResult += 0;
                     break;
             }
         }
