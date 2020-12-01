@@ -30,8 +30,8 @@ app.use(compression({
 }));
 
 const options = process.env.NODE_ENV === "production" ? {
-    key: fs.readFileSync("certs/key.pem"),
-    cert: fs.readFileSync("certs/cert.pem")
+    key: fs.readFileSync(".ssl/private.key"),
+    cert: fs.readFileSync(".ssl/certificate.crt")
 } : {};
 
 app.use(bodyParser.json({ limit: "5mb", extended: true }))
