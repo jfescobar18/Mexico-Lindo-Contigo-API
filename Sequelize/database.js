@@ -35,6 +35,7 @@ db.Op = Op;
 
 db.UserGenders = require("./DataModels/usergenders")(instance, Sequelize.DataTypes);
 db.UserTypes = require("./DataModels/usertypes")(instance, Sequelize.DataTypes);
+db.States = require("./DataModels/states")(instance, Sequelize.DataTypes);
 db.Users = require("./DataModels/users")(instance, Sequelize.DataTypes);
 db.MainHasMembers = require("./DataModels/mainhasmembers")(instance, Sequelize.DataTypes);
 db.Admins = require("./DataModels/admins")(instance, Sequelize.DataTypes);

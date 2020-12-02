@@ -9,6 +9,7 @@ exports.addUser = async function (userParams) {
             UserSurname: userParams.UserSurname,
             UserBirthDate: userParams.UserBirthDate,
             UserGenderId: userParams.UserGenderId,
+            StateId: userParams.StateId,
             UserTypeId: userParams.UserTypeId,
             UserMemberAlias: userParams.UserMemberAlias,
             UserEmail: userParams.UserEmail,

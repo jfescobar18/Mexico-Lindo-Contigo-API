@@ -38,6 +38,16 @@ module.exports = function(sequelize, DataTypes) {
         key: 'UserGenderId'
       }
     },
+    StateId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: {
+          tableName: 'States',
+        },
+        key: 'StateId'
+      }
+    },
     UserTypeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
