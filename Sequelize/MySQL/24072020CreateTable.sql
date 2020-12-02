@@ -42,6 +42,367 @@ SELECT NULL, "Member" FROM DUAL
 WHERE NOT EXISTS (SELECT `UserTypeName` 
                     FROM `UserTypes` 
                     WHERE `UserTypeName` = "Member" LIMIT 1);
+
+CREATE TABLE IF NOT EXISTS `States` (
+  `StateId` INT NOT NULL AUTO_INCREMENT,
+  `StateCode` CHAR(2) NOT NULL DEFAULT '',
+  `StateName` VARCHAR(128) NOT NULL DEFAULT '',
+  PRIMARY KEY (`StateId`)
+);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "AL", "Alabama" FROM DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "AL" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "AK", "Alaska" FROM DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "AK" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "AS", "American Samoa" FROM DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "AS0" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "AZ", "Arizona" FROM DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "AZ" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "AR", "Arkansas" FROM DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "AR" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "CA", "California" FROM DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "CA" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "CO", "Colorado" FROM DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "CO" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "CT", "Connecticut" FROM DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "CT" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "DE", "Delaware" FROM DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "DE" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "DC", "District of Columbia" FROM DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "DC" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "FM", "Federated States of Micronesia" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "FM" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "FL", "Florida" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "FL" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "GA", "Georgia" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "GA" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "GU", "Guam" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "GU" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "HI", "Hawaii" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "HI" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "ID", "Idaho" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "ID" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "IL", "Illinois" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "IL" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "IN", "Indiana" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "IN" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "IA", "Iowa" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "IA" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "KS", "Kansas" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "KS" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "KY", "Kentucky" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "KY" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "LA", "Louisiana" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "LA" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "ME", "Maine" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "ME" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "MH", "Marshall Islands" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "MH" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "MD", "Maryland" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "MD" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "MA", "Massachusetts" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "MA" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "MI", "Michigan" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "MI" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "MN", "Minnesota" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "MN" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "MS", "Mississippi" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "MS" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "MO", "Missouri" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "MO" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "MT", "Montana" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "MI" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "NE", "Nebraska" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "NE" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "NV", "Nevada" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "NV" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "NH", "New Hampshire" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "NH" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "NJ", "New Jersey" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "NJ" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "NM", "New Mexico" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "NM" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "NY", "New York" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "NY" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "NC", "North Carolina" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "NC" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "ND", "North Dakota" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "ND" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "MP", "Northern Mariana Islands" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "MP" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "OH", "Ohio" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "OH" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "OK", "Oklahoma" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "OK" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "OR", "Oregon" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "OR" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "PW", "Palau" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "PW" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "PA", "Pennsylvania" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "PA" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "PR", "Puerto Rico" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "PR" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "RI", "Rhode Island" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "RI" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "SC", "South Carolina" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "SC" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "SD", "South Dakota" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "SD" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "TN", "Tennessee" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "TN" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "TX", "Texas" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "TX" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "UT", "Utah" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "UT" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "VT", "Vermont" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "VT" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "VI", "Virgin Islands" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "VI" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "VA", "Virginia" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "VA" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "WA", "Washington" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "WA" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "WV", "West Virginia" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "WV" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "WI", "Wisconsin" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "WI" LIMIT 1);
+
+INSERT INTO `States` (`StateId`, `StateCode`, `StateName`)
+SELECT NULL, "WY", "Wyoming" FROM  DUAL
+WHERE NOT EXISTS (SELECT `StateCode` 
+                    FROM `States` 
+                    WHERE `StateCode` = "WY" LIMIT 1);
     
 CREATE TABLE IF NOT EXISTS `Users`(
 	`UserId` INT NOT NULL AUTO_INCREMENT,
@@ -51,6 +412,7 @@ CREATE TABLE IF NOT EXISTS `Users`(
     `UserSurname` VARCHAR(255) NOT NULL,
     `UserBirthDate` DATETIME NOT NULL,
     `UserGenderId` INT NOT NULL,
+    `StateId` INT NULL,
     `UserTypeId` INT NOT NULL,
 	`UserMemberAlias` VARCHAR(125) NOT NULL,
     `Username` VARCHAR(255) NULL,
@@ -64,6 +426,11 @@ CREATE TABLE IF NOT EXISTS `Users`(
     CONSTRAINT `UserGenderId_FK`
         FOREIGN KEY ( `UserGenderId` ) 
         REFERENCES `UserGenders`( `UserGenderId` )
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+    CONSTRAINT `StateId_FK`
+        FOREIGN KEY ( `StateId` )
+        REFERENCES `States`( `StateId` )
         ON DELETE NO ACTION
         ON UPDATE NO ACTION,
     CONSTRAINT `UserTypeId_FK`

@@ -4,6 +4,7 @@ const ApiResponse = require("../Controllers/ApiResponse");
 const TokenService = require("../Utils/TokenService");
 const Cryptography = require("../Utils/Cryptography");
 const SellerActions = require("../DatabaseActions/SellerActions");
+const UserActions = require("../DatabaseActions/UserActions");
 const AdminActions = require("../DatabaseActions/AdminActions");
 
 exports.adminLogin = async function (req, res) {
@@ -50,7 +51,7 @@ exports.sellerLogin = async function (req, res) {
 
 exports.userLogin = async function (req, res) {
     try {
-        let user = await SellerActions.getUserByEmail(req.body.UserEmail).catch(error => { throw error });
+        let user = await UserActions.getUserByEmail(req.body.UserEmail).catch(error => { throw error });
 
         if (user !== null && await Cryptography.comparePassword(req.body.UserPassword, main.UserPassword)) {
             return ApiResponse.send(HttpCodes.OK, res, ResponseCodes.AuthenticatedUser, TokenService.createToken(user, 365));

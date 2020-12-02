@@ -18,23 +18,6 @@ exports.getSellerByUsername = async function (SellerUsername) {
     }
 }
 
-exports.getUserByEmail = async function (UserEmail) {
-    try {
-        const user = await db.Users.findAll({
-            where: {
-                UserEmail: {
-                    [db.Op.eq]: UserEmail
-                }
-            }
-        });
-
-        return user.length > 0 ? user[0].dataValues : null;
-    }
-    catch (error) {
-        throw error;
-    }
-}
-
 exports.addSeller = async function (sellerParams) {
     try {
         const seller = db.Sellers.build({

@@ -26,29 +26,6 @@ exports.getMembershipByMembershipFamilyMembers = async function (MembershipFamil
     }
 }
 
-exports.addUser = async function (userParams) {
-    try {
-        const user = db.Users.build({
-            UserCURP: userParams.UserCURP,
-            UserFirstName: userParams.UserFirstName,
-            UserLastName: userParams.UserLastName,
-            UserSurname: userParams.UserSurname,
-            UserBirthDate: userParams.UserBirthDate,
-            UserGenderId: userParams.UserGenderId,
-            UserTypeId: userParams.UserTypeId,
-            UserMemberAlias: userParams.UserMemberAlias,
-            UserEmail: userParams.UserEmail,
-            UserPhone: userParams.UserPhone
-        });
-
-        await user.save();
-        return user;
-    }
-    catch (error) {
-        throw error;
-    }
-}
-
 exports.addNewMembership = async function (membershipParams) {
     try {
         const membership = db.Memberships.build({
@@ -64,6 +41,26 @@ exports.addNewMembership = async function (membershipParams) {
         return membership;
     }
     catch (error) {
+        throw error;
+    }
+}
+
+exports.updateMembership = async function (MembershipParams) {
+    try {
+        switch (MembershipParams.MembershipPaymentStatusId) {
+            case 1:
+                let dateNow = new Date(Date.now()).toISOString();
+                MembershipParams.MembershipStatusId = 1;
+                MembershipParams.MembershipNextPaymentDate = dateNow.setMonth(dateNow.getMonth() + MembershipParams.MembershipPaymentFrequency);
+                MembershipParams.MembershipLastPaymentDate = dateNow;
+                break;
+            case 2:
+            case 3:
+                MembershipParams.MembershipStatusId = 2;
+                break;
+        }
+
+    } catch (error) {
         throw error;
     }
 }

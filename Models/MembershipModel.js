@@ -2,6 +2,7 @@ const HttpCodes = require("../Utils/HttpCodes");
 const ResponseCodes = require("../Utils/ResponseCodes");
 const ApiResponse = require("../Controllers/ApiResponse");
 const MembershipActions = require("../DatabaseActions/MembershipActions");
+const UserActions = require("../DatabaseActions/UserActions");
 
 exports.getMembershipType = async function (req, res) {
     try {
@@ -29,8 +30,6 @@ exports.getMembershipType = async function (req, res) {
             }
         }
 
-        console.log(MembersMathResult);
-
         let membershipType = await MembershipActions.getMembershipByMembershipFamilyMembers(MembersMathResult).catch(error => { throw error });
         if (membershipType !== null) {
             return ApiResponse.send(HttpCodes.OK, res, membershipType, null);
@@ -43,23 +42,19 @@ exports.getMembershipType = async function (req, res) {
     }
 }
 
-exports.addFamily = async function (req, res) {
+exports.addNewMembership = async function (req, res) {
     try {
-        let users = [];
-        for (const userParams of req.body.Family) {
-            let user = await MembershipActions.addUser(userParams).catch(error => { throw error });
-            users.push(user);
-        }
-        return ApiResponse.send(HttpCodes.OK, res, users[0], null);
+        let membership = await MembershipActions.addNewMembership(req.body).catch(error => { throw error });
+        return ApiResponse.send(HttpCodes.OK, res, membership, null);
     } catch (error) {
         return ApiResponse.send(HttpCodes.BAD_REQUEST, res, error.message, null);
     }
 }
 
-exports.addNewMembership = async function (req, res) {
+exports.updatePaymentStatus = async function (req, res) {
     try {
-        let membership = await MembershipActions.addNewMembership(membershipParams).catch(error => { throw error });
-        return ApiResponse.send(HttpCodes.OK, res, membership, null);
+        await MembershipActions.updateMembership(req.body).catch(error => { throw error });
+        return ApiResponse.send(HttpCodes.OK, res, ResponseCodes.MembershipUpdated, null);
     } catch (error) {
         return ApiResponse.send(HttpCodes.BAD_REQUEST, res, error.message, null);
     }
