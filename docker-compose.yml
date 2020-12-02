@@ -21,6 +21,8 @@ services:
     container_name: mlc-nodejs-api
   mysql:
     image: mysql:8.0.21
+    cap_add:
+      - SYS_NICE
     networks:
       - Mexico_Lindo_Contigo
     environment:
