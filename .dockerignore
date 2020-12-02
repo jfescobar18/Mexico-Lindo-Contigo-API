@@ -5,5 +5,7 @@
 build/*
 Dockerfile
 node_modules
+coverage
+Tests
 npm-debug.log*
 README.md
