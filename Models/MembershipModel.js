@@ -2,7 +2,6 @@ const HttpCodes = require("../Utils/HttpCodes");
 const ResponseCodes = require("../Utils/ResponseCodes");
 const ApiResponse = require("../Controllers/ApiResponse");
 const MembershipActions = require("../DatabaseActions/MembershipActions");
-const UserActions = require("../DatabaseActions/UserActions");
 
 exports.getMembershipType = async function (req, res) {
     try {

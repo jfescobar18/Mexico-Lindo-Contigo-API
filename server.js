@@ -46,8 +46,14 @@ app.get("/", function (req, res) {
 const AuthenticationController = require("./Controllers/AuthenticationController")();
 app.use("/auth", AuthenticationController);
 
+const InformationController = require("./Controllers/InformationController")();
+app.use("/info", InformationController);
+
 const MembershipController = require("./Controllers/MembershipController")();
 app.use("/membership", MembershipController);
+
+const SellerController = require("./Controllers/SellerController")();
+app.use("/seller", SellerController);
 
 try {
     if (cluster.isMaster) {
