@@ -83,6 +83,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       defaultValue: 0
     },
+    UserStripeId: {
+      type: DataTypes.STRING(125),
+      allowNull: true
+    },
     CreationDate: {
       type: DataTypes.DATE,
       allowNull: true,
