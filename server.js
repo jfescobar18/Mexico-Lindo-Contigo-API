@@ -52,6 +52,9 @@ app.use("/info", InformationController);
 const MembershipController = require("./Controllers/MembershipController")();
 app.use("/membership", MembershipController);
 
+const PaymentController = require("./Controllers/PaymentController")();
+app.use("/payment", PaymentController);
+
 const SellerController = require("./Controllers/SellerController")();
 app.use("/seller", SellerController);
 

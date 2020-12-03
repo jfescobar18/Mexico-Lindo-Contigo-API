@@ -420,6 +420,7 @@ CREATE TABLE IF NOT EXISTS `Users`(
     `UserPhone` VARCHAR(125) NULL,
     `UserPassword` VARCHAR(255) NULL,
     `UserConfirmed` BOOLEAN NULL DEFAULT 0,
+    `UserStripeId` VARCHAR(125) NULL,
     `CreationDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
     `LastModified` DATETIME NULL,
     PRIMARY KEY ( `UserId` ),
@@ -664,3 +665,33 @@ CREATE TABLE IF NOT EXISTS `Sells` (
         ON DELETE NO ACTION
         ON UPDATE NO ACTION
 );
+
+CREATE OR REPLACE VIEW `MembershipInformation`
+AS
+    SELECT `Users`.`UserId`,
+        CONCAT(`Users`.`UserFirstName`, " ", `Users`.`UserLastName`, " ", `Users`.`UserSurname`) AS `UserFullName`,
+        `Users`.`UserPhone`,
+        `Memberships`.`MembershipId`,
+        `Memberships`.`MembershipStatusId`,
+        `Memberships`.`MembershipUniqueCode`,
+        `Memberships`.`MembershipPaymentFrequency`,
+        CASE 
+            WHEN `Memberships`.`MembershipPaymentFrequency` = 1 THEN `MembershipTypes`.`MembershipTypeMonthlyCost`
+            WHEN `Memberships`.`MembershipPaymentFrequency` = 6 THEN `MembershipTypes`.`MembershipTypeHalfYearlyCost`
+            WHEN `Memberships`.`MembershipPaymentFrequency` = 12 THEN `MembershipTypes`.`MembershipTypeYearlyCost`
+            ELSE NULL
+        END AS `MembershipCost`,
+        `MembershipTypes`.`MembershipTypeName`,
+        `MembershipPaymentTypes`.`MembershipPaymentTypeName`,
+        `MembershipPaymentStatus`.`MembershipPaymentStatusName`,
+        DATEDIFF(`MembershipNextPaymentDate`,  `MembershipLastPaymentDate`) * 24 * 60 * 60 AS `MembershipDaysUntillNextPayment`
+    FROM `Users`
+    INNER JOIN `Memberships`
+    ON `Users`.`UserId` = `Memberships`.`UserId`
+    INNER JOIN `MembershipTypes`
+    ON `Memberships`.`MembershipTypeId` = `MembershipTypes`.`MembershipTypeId`
+    INNER JOIN `MembershipPaymentTypes`
+    ON `Memberships`.`MembershipPaymentTypeId` = `MembershipPaymentTypes`.`MembershipPaymentTypeId`
+    INNER JOIN `MembershipPaymentStatus`
+    ON `Memberships`.`MembershipPaymentStatusId` = `MembershipPaymentStatus`.`MembershipPaymentStatusId`
+;
