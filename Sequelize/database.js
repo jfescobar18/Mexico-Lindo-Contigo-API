@@ -46,7 +46,8 @@ db.MembershipPaymentStatus = require("./DataModels/membershippaymentstatus")(ins
 db.MembershipStatus = require("./DataModels/membershipstatus")(instance, Sequelize.DataTypes);
 db.POS = require("./DataModels/pos")(instance, Sequelize.DataTypes);
 db.Memberships = require("./DataModels/memberships")(instance, Sequelize.DataTypes);
-db.Sells = require("./DataModels/Sells")(instance, Sequelize.DataTypes);
+db.Sells = require("./DataModels/sells")(instance, Sequelize.DataTypes);
+db.MembershipInformation = require("./DataModels/membershipinformation")(instance, Sequelize.DataTypes);
 
 db.instance.sync({ force: false })
     .then(() => {
