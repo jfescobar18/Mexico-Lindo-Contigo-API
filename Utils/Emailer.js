@@ -22,24 +22,12 @@ function composeEmail(user, emailType, token) {
 
         switch (emailType) {
             case EmailTypes.WELCOME_USER:
-                emailComposed.subject = "¡Bienvenido a Company!";
-                emailComposed.text = `${user.UserFirstName} te damos la bienvenida a Company, comienza a usar tu cuenta ahora`;
+                emailComposed.subject = "¡Bienvenido!";
+                emailComposed.text = `${user.UserFirstName} te damos la bienvenida a México Lindo Contigo, realizo tu pago y comienza a usar tu cuenta ahora`;
                 emailComposed.body = fs.readFileSync(path.join(__dirname, "../Mailing/WelcomeUser.html"), "utf8");
                 emailComposed.body = emailComposed.body.toString();
-                emailComposed.body = emailComposed.body.addConfirmEmailURI(user);
-                break;
-            case EmailTypes.EMAIL_CONFIRMATION:
-                emailComposed.subject = "Confirmación de Email";
-                emailComposed.text = `Confirma tu email ahora y comienza a usar Company`;
-                emailComposed.body = fs.readFileSync(path.join(__dirname, "../Mailing/Confirmation.html")), "utf8";
-                emailComposed.body = emailComposed.body.toString();
-                emailComposed.body = emailComposed.body.addConfirmEmailURI(user);
-                break;
-            case EmailTypes.PASSWORD_RECOVERY:
-                emailComposed.subject = "Recupera tu contraseña";
-                emailComposed.text = `Hola ${user.UserFirstName}, ¿Olvidaste tu contraseña?`;
-                emailComposed.body = fs.readFileSync(path.join(__dirname, "../Mailing/PasswordRecovery.html")), "utf8";
-                emailComposed.body = emailComposed.body.toString();
+                emailComposed.body = emailComposed.body.addUserPassword(user, null);
+                emailComposed.body = emailComposed.body.replace("{UserFirstName}", user.UserFirstName);
                 break;
             default:
                 break;
@@ -51,15 +39,8 @@ function composeEmail(user, emailType, token) {
 }
 
 Object.assign(String.prototype, {
-    addConfirmEmailURI(user, token) {
-        let ConfirmEmailURI = process.env.NODE_ENV === "production" ? process.env.WEB_APP_URL_PRODUCTION : process.env.WEB_APP_URL_DEVELOP;
-        ConfirmEmailURI = ConfirmEmailURI + `auth/confirm-email?email=${user.UserEmail}&token=${token}`;
-        return this.replace("{ConfirmEmailURI}", ConfirmEmailURI);
-    },
-    addPasswordRecoveryURI(user, token) {
-        let PasswordRecoveryURI = process.env.NODE_ENV === "production" ? process.env.WEB_APP_URL_PRODUCTION : process.env.WEB_APP_URL_DEVELOP;
-        PasswordRecoveryURI = PasswordRecoveryURI + `auth/recovery-password?email=${user.UserEmail}&token=${token}`;
-        return this.replace("{PasswordRecoveryURI}", PasswordRecoveryURI);
+    addUserPassword(user, token) {
+        return this.replace("{UserPassword}", user.UserPassword);
     }
 });
 
@@ -78,7 +59,7 @@ const sendEmail = async function (to, subject, text, html) {
         const transporter = nodemailer.createTransport(config);
 
         let info = await transporter.sendMail({
-            from: "Reserbox 🗃 <fraescruz@gmail.com>",
+            from: `México Lindo Contigo 🗃 <${process.env.USER_SMTP}>`,
             to: to,
             subject: subject,
             text: text,

@@ -79,10 +79,13 @@ exports.addNewMembership = async function (membershipParams) {
 
 exports.updateMembership = async function (MembershipParams) {
     try {
+        const membershipInformation = await getMembershipInformationByUserId(MembershipParams.UserId).catch(error => { throw error });
+
         switch (MembershipParams.MembershipPaymentStatusId) {
             case 1:
                 let dateNow = new Date(Date.now()).toISOString();
                 MembershipParams.MembershipStatusId = 1;
+                MembershipParams.MembershipUniqueCode = `MLC-${membershipInformation.MembershipTypeName}-${membershipInformation.MembershipId}`;
                 MembershipParams.MembershipNextPaymentDate = dateNow.setMonth(dateNow.getMonth() + MembershipParams.MembershipPaymentFrequency);
                 MembershipParams.MembershipLastPaymentDate = dateNow;
                 break;
@@ -92,6 +95,18 @@ exports.updateMembership = async function (MembershipParams) {
                 break;
         }
 
+        const membership = await db.Memberships.update(
+            MembershipParams,
+            {
+                where: {
+                    MembershipId: {
+                        [db.Op.eq]: MembershipId
+                    }
+                }
+            }
+        );
+
+        return membership.length > 0 ? membership[0].dataValues : null;
     } catch (error) {
         throw error;
     }

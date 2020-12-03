@@ -53,7 +53,7 @@ exports.userLogin = async function (req, res) {
     try {
         let user = await UserActions.getUserByEmail(req.body.UserEmail).catch(error => { throw error });
 
-        if (user !== null && await Cryptography.comparePassword(req.body.UserPassword, main.UserPassword)) {
+        if (user !== null && await Cryptography.comparePassword(req.body.UserPassword, user.UserPassword)) {
             return ApiResponse.send(HttpCodes.OK, res, ResponseCodes.AuthenticatedUser, TokenService.createToken(user, 365));
         }
         else {

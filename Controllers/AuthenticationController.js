@@ -16,6 +16,9 @@ var routes = function () {
     router.route("/main-login")
         .post(Auth.userLogin);
 
+    router.route("/validate-password")
+        .post(Auth.userLogin);
+
     router.route("/is-token-active")
         .get(AuthMiddleware.ensureAuthenticated, Auth.isTokenActive);
     return router;

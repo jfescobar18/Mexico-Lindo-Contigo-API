@@ -5,7 +5,7 @@ const Payment = require("../Models/PaymentModel");
 
 var routes = function () {
     router.route("/pay-first-time-membership")
-        .post(Payment.payFirstTimeMembership);
+        .post(AuthMiddleware.ensureAuthenticated, Payment.payFirstTimeMembership);
     return router;
 };
 

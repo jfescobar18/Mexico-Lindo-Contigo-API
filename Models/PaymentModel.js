@@ -30,6 +30,7 @@ exports.payFirstTimeMembership = async function (req, res) {
                 customer: customer.id
             });
         }).then((charge) => {
+            // Send Seller notification
             return ApiResponse.send(HttpCodes.OK, res, { Id: charge.id }, null);
         }).catch((err) => {
             return ApiResponse.send(HttpCodes.BAD_REQUEST, res, err, null);
