@@ -1,5 +1,37 @@
 const db = require("../Sequelize/database");
 
+exports.getMembershipInformationByUserId = async function (UserId) {
+    try {
+        const membershipInformation = await db.MembershipInformation.findAll({
+            where: {
+                UserId: {
+                    [db.Op.eq]: UserId
+                }
+            }
+        });
+
+        return membershipInformation.length > 0 ? membershipInformation[0].dataValues : null;
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getMembershipInformationByUserPhone = async function (UserPhone) {
+    try {
+        const membershipInformation = await db.MembershipInformation.findAll({
+            where: {
+                UserPhone: {
+                    [db.Op.eq]: UserPhone
+                }
+            }
+        });
+
+        return membershipInformation.length > 0 ? membershipInformation[0].dataValues : null;
+    } catch (error) {
+        throw error;
+    }
+}
+
 exports.getMembershipByMembershipFamilyMembers = async function (MembershipFamilyMembers) {
     try {
         const membershipType = await db.MembershipTypes.findAll({

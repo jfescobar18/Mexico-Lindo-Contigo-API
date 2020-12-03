@@ -671,6 +671,7 @@ AS
     SELECT `Users`.`UserId`,
         CONCAT(`Users`.`UserFirstName`, " ", `Users`.`UserLastName`, " ", `Users`.`UserSurname`) AS `UserFullName`,
         `Users`.`UserPhone`,
+        `Users`.`UserEmail`,
         `Memberships`.`MembershipId`,
         `Memberships`.`MembershipStatusId`,
         `Memberships`.`MembershipUniqueCode`,
@@ -694,4 +695,5 @@ AS
     ON `Memberships`.`MembershipPaymentTypeId` = `MembershipPaymentTypes`.`MembershipPaymentTypeId`
     INNER JOIN `MembershipPaymentStatus`
     ON `Memberships`.`MembershipPaymentStatusId` = `MembershipPaymentStatus`.`MembershipPaymentStatusId`
+    WHERE `Users`.`UserTypeId` = 1
 ;

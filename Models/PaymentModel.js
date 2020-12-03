@@ -1,13 +1,17 @@
 const HttpCodes = require("../Utils/HttpCodes");
 const ApiResponse = require("../Controllers/ApiResponse");
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE);
+const MembershipActions = require("../DatabaseActions/MembershipActions");
+const UserActions = require("../DatabaseActions/UserActions");
 
 exports.payFirstTimeMembership = async function (req, res) {
     try {
+        const membershipInformation = await MembershipActions.getMembershipInformationByUserId(req.body.UserId).catch(error => { throw error });
+
         stripe.customers.create({
-            email: req.body.stripeEmail,
+            email: membershipInformation.UserEmail,
             source: req.body.stripeToken,
-            name: req.body.name,
+            name: membershipInformation.UserFullName,
             address: req.body.address
             // address: {
             //     line1: req.body.address.line1,
@@ -17,9 +21,11 @@ exports.payFirstTimeMembership = async function (req, res) {
             //     country: req.body.address.country,
             // }
         }).then((customer) => {
+            UserActions.updateUser({ UserStripeId: customer.id }, req.body.UserId).catch(error => { throw error });
+
             return stripe.charges.create({
-                amount: 7000,
-                description: 'Web Development Product',
+                amount: membershipInformation.MembershipCost,
+                description: membershipInformation.MembershipTypeName,
                 currency: 'USD',
                 customer: customer.id
             });
