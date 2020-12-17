@@ -44,7 +44,7 @@ services:
     networks:
       - Mexico_Lindo_Contigo
     ports:
-      - "3001:80"
+      - "3002:80"
     environment:
       - PMA_HOST=mlc-mysql-api
       - PMA_PORT=3306
