@@ -44,19 +44,19 @@ app.get("/", function (req, res) {
 });
 
 const AuthenticationController = require("./Controllers/AuthenticationController")();
-app.use("/auth", AuthenticationController);
+app.use("/api/auth", AuthenticationController);
 
 const InformationController = require("./Controllers/InformationController")();
-app.use("/info", InformationController);
+app.use("/api/info", InformationController);
 
 const MembershipController = require("./Controllers/MembershipController")();
-app.use("/membership", MembershipController);
+app.use("/api/membership", MembershipController);
 
 const PaymentController = require("./Controllers/PaymentController")();
-app.use("/payment", PaymentController);
+app.use("/api/payment", PaymentController);
 
 const SellerController = require("./Controllers/SellerController")();
-app.use("/seller", SellerController);
+app.use("/api/seller", SellerController);
 
 try {
     if (cluster.isMaster) {
@@ -77,6 +77,28 @@ try {
             let worker = cluster.worker.id;
             res.send("Running on worker with id ==> " + worker);
         });
+
+        const SwagOptions = {
+            info: {
+                version: '1.0.0',
+                title: 'MLC',
+                license: {
+                    name: 'MIT',
+                },
+            },
+            security: {
+                BasicAuth: {
+                    type: 'https',
+                    scheme: 'basic',
+                },
+            },
+            filesPattern: './**/*.js', // Glob pattern to find your jsdoc files (it supports arrays too ['./**/*.controller.js', './**/*.route.js'])
+            swaggerUIPath: '/your-url', // SwaggerUI will be render in this url. Default: '/api-docs'
+            baseDir: __dirname,
+            exposeSwaggerUI: true, // Expose OpenAPI UI. Default true
+            exposeApiDocs: false, // Expose Open API JSON Docs documentation in `apiDocsPath` path. Default false.
+            apiDocsPath: '/v3/api-docs', // Open API JSON Docs endpoint. Default value '/v3/api-docs'.
+        };
 
         createServer();
     }
