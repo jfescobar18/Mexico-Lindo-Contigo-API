@@ -1,5 +1,6 @@
 # MLC API
 
+[![Docker badge](https://badges.aleen42.com/src/docker.svg)](#) [![Node badge](https://badges.aleen42.com/src/node.svg)](#) [![JEST badge](https://badges.aleen42.com/src/jest_1.svg)](#)
 [![Generic badge](https://img.shields.io/badge/build-passing-<COLOR>.svg)](#) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](#)
 
 ### Installation
